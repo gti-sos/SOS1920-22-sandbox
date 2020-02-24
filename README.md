@@ -6,5 +6,4 @@ Este es nuestro repo (p1). Nueva edición de p2. Nueva línea de p1.
 
 Procedo a liarla.
 
-h
-hj
+Yisus ha hecho un update del archivo el día 24/02/2020
