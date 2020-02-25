@@ -10,5 +10,9 @@ HOlaaa
 
 Ojala ser negro
 
+Patata.
+Jesús Jiménez AKA el guapo
+
 Patata. 
-Juan Antonio Aranda Triana. 
+Juan Antonio Aranda Triana AKA el mamadísimo
+
