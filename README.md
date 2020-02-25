@@ -11,4 +11,4 @@ HOlaaa
 Ojala ser negro
 
 Patata. 
-Juan Antonio Aranda Triana. 
+Juan Antonio Aranda Triana AKA el mamadísimo
