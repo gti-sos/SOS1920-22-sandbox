@@ -16,3 +16,5 @@ Jesús Jiménez AKA el guapo
 Patata. 
 Juan Antonio Aranda Triana AKA el mamadísimo
 
+Patata.
+Casto Rodriguez Diaz AKA el metralleta
