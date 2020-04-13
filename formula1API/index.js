@@ -45,6 +45,8 @@ module.exports = function(app){
 		
 		var query = request.query;
 		
+		console.log(query);
+		
 		var offset = query.offset;
 		var limit = query.limit;
 		
