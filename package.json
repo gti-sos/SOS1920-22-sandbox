@@ -1,0 +1,26 @@
+{
+  "name": "sos1920-22-sandbox",
+  "version": "1.0.0",
+  "description": "Aquí es donde vamos a llevar a cabo todas nuestras pruebas en el grupo 22 de la asignatura Sistemas Orientados a Servicios del tercer curso de Ingeniería Informática - Tecnologías Informáticas",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nedb": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gti-sos/SOS1920-22-sandbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gti-sos/SOS1920-22-sandbox/issues"
+  },
+  "homepage": "https://github.com/gti-sos/SOS1920-22-sandbox#readme"
+}

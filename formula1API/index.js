@@ -57,10 +57,11 @@ module.exports = function(app){
 			query.year = parseInt(query.year);	
 			console.log(query.year);
 		}
-		if(query.hasOwnProperty("country")){
+		//ESTA PROPIEDAD NO HACE DEBIDO A QUE NO HACE FALTA PARSEAR STRINGS!!!!!!!
+		/*if(query.hasOwnProperty("country")){
 			query.country = parseInt(query.country);
 			console.log(query.country);
-		}
+		}*/
 		if(query.hasOwnProperty("totalpointnumber")){
 			query.totalpointnumber = parseInt(query.totalpointnumber);
 			console.log(query.totalpointnumber);
@@ -87,8 +88,7 @@ module.exports = function(app){
 			response.send(JSON.stringify(formula1, null, 2));
 			console.log("Data sent:"+JSON.stringify(formula1, null, 2));
 	
-		}
-		});
+		}});
 		
 	});
 	
