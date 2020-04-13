@@ -15,7 +15,8 @@ module.exports = function(app){
 		{ country: 'france', year:2019, totalpointnumber:32, pilotnumber: 3, victorynumber: 0  },
 		{ country: 'united kingdom', year:2014, totalpointnumber:475, pilotnumber: 4, victorynumber: 11 },
 		{ country: 'spain', year:2015, totalpointnumber:30, pilotnumber: 3, victorynumber: 0 },
-		{ country: 'mexico', year:2016, totalpointnumber:101, pilotnumber: 2, victorynumber: 0 }
+		{ country: 'mexico', year:2016, totalpointnumber:101, pilotnumber: 2, victorynumber: 0 },
+		{ country: 'india', year:2017, totalpointnumber:5, pilotnumber: 4, victorynumber: 1 }
 	];
 	
 	app.get(baseURL + "/formula-stats/loadInitialData", (request, response) => {
@@ -75,13 +76,15 @@ module.exports = function(app){
 			console.log(query.pilotnumber);
 		}
 		
+		console.log(query);
+		
 		db.find(query).skip(offset).limit(limit).exec((error, formula1) => {
 			formula1.forEach((n) => {
 				delete n._id;
 		});
 		
 		if (formula1.length < 1) {
-			response.sendStatus(400, "BAD REQUEST(data is empty)");
+			response.sendStatus(400, "Bad request");
 			console.log("Requested data is INVALID");
 		}
 		else{
