@@ -21,7 +21,7 @@ module.exports = function(app){
 	app.get(baseURL + "/formula-stats/loadInitialData", (request, response) => {
 
 		console.log("New GET .../loadInitialData");
-		var formula1 = db.getAllData();
+		/*var formula1 = db.getAllData();
 	
 		if (formula1.length >= 1) {
 			response.sendStatus(409, "CONFLICT(this action would remove the existing data)");
@@ -30,8 +30,13 @@ module.exports = function(app){
 		else{
 			db.insert(pilotosInitialData);
 			response.send(JSON.stringify(pilotosInitialData, null, 2));
-			console.log("Initial overdose-deaths data loaded"+JSON.stringify(pilotosInitialData, null, 2));
-		}
+			console.log("Initial data loaded"+JSON.stringify(pilotosInitialData, null, 2));
+		}*/
+		
+		db.remove({});
+        db.insert(pilotosInitialData);
+        response.send(JSON.stringify(pilotosInitialData,null,2));
+        console.log("Initial data loaded:"+JSON.stringify(pilotosInitialData,null,2));
 	});
 	
 	app.get(baseURL+"/formula-stats", (request, response) => {
@@ -42,23 +47,31 @@ module.exports = function(app){
 		var offset = query.offset;
 		var limit = query.limit;
 		
+		//Variable auxiliar para el query.
+		var aux = "";
+		
 		delete query.offset;
 		delete query.limit;
 		
 		if(query.hasOwnProperty("year")){
 			query.year = parseInt(query.year);	
+			console.log(query.year);
 		}
 		if(query.hasOwnProperty("country")){
 			query.country = parseInt(query.country);
+			console.log(query.country);
 		}
 		if(query.hasOwnProperty("totalpointnumber")){
 			query.totalpointnumber = parseInt(query.totalpointnumber);
+			console.log(query.totalpointnumber);
 		}
 		if(query.hasOwnProperty("victorynumber")){
 			query.victorynumber = parseInt(query.victorynumber);
+			console.log(query.victorynumber);
 		}
-		if(query.hasOwnProperty("pilotNumber")){
+		if(query.hasOwnProperty("pilotnumber")){
 			query.pilotnumber = parseInt(query.pilotnumber);
+			console.log(query.pilotnumber);
 		}
 		
 		db.find(query).skip(offset).limit(limit).exec((error, formula1) => {
@@ -68,7 +81,7 @@ module.exports = function(app){
 		
 		if (formula1.length < 1) {
 			response.sendStatus(400, "BAD REQUEST(data is empty)");
-			console.log("The requested data is empty");
+			console.log("Requested data is INVALID");
 		}
 		else{
 			response.send(JSON.stringify(formula1, null, 2));
@@ -174,8 +187,6 @@ module.exports = function(app){
 		//Lo que hay detrás de los dos puntos no es siempre así.
 		var aux = request.params.country; //Pillar el contenido después de los dos puntos.
 		var year = parseInt(request.params.year);
-		
-		console.log(Date() + ' - DELETE /formula-stats - Recurso Específico');
 		
 		db.remove({"country": aux, "year": year}, {multi:true}, (err, pilotsDeleted) => {
 			if(pilotosDeleted == 0){
