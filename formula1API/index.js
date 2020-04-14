@@ -49,7 +49,8 @@ module.exports = function(app){
 			query.year = parseInt(query.year);	
 			console.log(query.year);
 		}
-		//ESTA PROPIEDAD NO HACE DEBIDO A QUE NO HACE FALTA PARSEAR STRINGS!!!!!!!
+		//ESTA PROPIEDAD NO HACE FALTA DEBIDO A QUE NO HACE FALTA PARSEAR STRINGS!!!!!!!
+		
 		/*if(query.hasOwnProperty("country")){
 			query.country = parseInt(query.country);
 			console.log(query.country);
