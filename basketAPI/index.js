@@ -29,13 +29,47 @@ module.exports = function(app){
 //==============================GetGeneral==============================\\
 
 	app.get(baseURL + '/og-basket-stats', (request, response) => {
+		var query = request.query; //Es un String
+		console.log(query);
+		var offset = query.offset;
+		var limit = query.limit;
+		
+		delete query.offset;
+		delete query.limit;
 
-		db.find({},(err, basketstats)=>{
+		if(query.hasOwnProperty("country")){
+			query.country = parseInt(query.country);	
+			console.log("Pais: " + query.country);
+		}
+		
+		if(query.hasOwnProperty("year")){
+			query.year = parseInt(query.year);	
+			console.log("Año: " + query.year);
+		}
+		
+		if(query.hasOwnProperty("points")){
+			query.points = parseInt(query.points);
+			console.log("Puntos: " + query.points);
+		}
+
+		if(query.hasOwnProperty("threepoints")){
+			query.threepoints = parseInt(query.threepoints);
+			console.log("Puntos de Tres: " + query.threepoints);
+		}
+		
+		if(query.hasOwnProperty("rebounds")){
+			query.rebounds = parseInt(query.rebounds);
+			console.log("Rebotes: " + query.rebounds);
+		}
+	
+		db.find(query).skip(offset).limit(limit).exec((err, basketstats)=>{
 			basketstats.forEach((b)=>{  
 				delete b._id;   //Borramos el parametro _id
 			});
 		response.send(JSON.stringify(basketstats,null,2));
+		
 		});
+			
 
 	});
 	
