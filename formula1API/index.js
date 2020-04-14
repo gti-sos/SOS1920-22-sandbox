@@ -1,13 +1,13 @@
 module.exports = function(app){
 	console.log(Date() + " Registering Formula 1 API");
 	
-	const dataStore = require('nedb');
-	const path = require('path');
+	const dataStore = require("nedb");
+	const path = require("path");
 	const baseURL = "/api/v1";
 	const dbFileName = path.join(__dirname, "formula1.db");
 	
 	const db = new dataStore({
-		fileName: dbFileName,
+		filename: dbFileName,
 		autoload: true
 	});
 	
