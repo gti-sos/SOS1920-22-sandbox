@@ -21,18 +21,8 @@ module.exports = function(app){
 	app.get(baseURL + "/formula-stats/loadInitialData", (request, response) => {
 
 		console.log("New GET .../loadInitialData");
-		/*var formula1 = db.getAllData();
+		//var formula1 = db.getAllData();
 	
-		if (formula1.length >= 1) {
-			response.sendStatus(409, "CONFLICT(this action would remove the existing data)");
-			console.log("There is already loaded data");
-		}
-		else{
-			db.insert(pilotosInitialData);
-			response.send(JSON.stringify(pilotosInitialData, null, 2));
-			console.log("Initial data loaded"+JSON.stringify(pilotosInitialData, null, 2));
-		}*/
-		
 		db.remove({});
         db.insert(pilotosInitialData);
         response.send(JSON.stringify(pilotosInitialData,null,2));
