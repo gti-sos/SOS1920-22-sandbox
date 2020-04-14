@@ -19,6 +19,9 @@ module.exports = function(app){
 		{ country: 'mexico', year:2016, totalpointnumber:101, pilotnumber: 2, victorynumber: 0 }
 	];
 	
+	//Si no pongo esta línea, al hacer el get al recurso general no funciona.
+	db.insert(pilotosInitialData);
+	
 	app.get(baseURL + "/formula-stats/loadInitialData", (request, response) => {
 
 		console.log("New GET .../loadInitialData");
@@ -76,7 +79,7 @@ module.exports = function(app){
 				delete n._id;
 		});
 		
-		if (formula1.length < 1) {
+		if (formula1.length < 0) {
 			response.sendStatus(400, "Bad request");
 			console.log("Requested data is INVALID");
 		}
@@ -165,7 +168,7 @@ module.exports = function(app){
 			console.warn(Date() + ' Hacking Attempt !!!! ');
 		}
 		else {
-			db.update({"country": country, "year": year }, body, (err, pilotosUpdated) => {
+			db.update({"country": aux, "year": year }, body, (err, pilotosUpdated) => {
 				if(pilotosUpdated == 0){
 					response.sendStatus(404, "Not found");
 				}
@@ -185,7 +188,7 @@ module.exports = function(app){
 		var year = parseInt(request.params.year);
 		
 		db.remove({"country": aux, "year": year}, {multi:true}, (err, pilotsDeleted) => {
-			if(pilotosDeleted == 0){
+			if(pilotsDeleted == 0){
 				response.sendStatus(404, "Not found");
 			}
 			else{
