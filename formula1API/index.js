@@ -1,4 +1,5 @@
 module.exports = function(app){
+	console.log("Registering Formula 1 API");
 	
 	const dataStore = require('nedb');
 	const path = require('path');
