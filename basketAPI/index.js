@@ -11,6 +11,8 @@ module.exports = function(app){
 		autoload: true
 	});
 	
+//==============================DATOS==============================\\
+
 	var baloncestoInitialData = [
 		{country:'serbia', year:2016, points:66, threepoints:4, rebounds:33},
 		{country:'spain', year:2012, points:100, threepoints:7, rebounds:35},
@@ -132,19 +134,17 @@ module.exports = function(app){
 
 //==============================PUT-RecursoEspecifico==============================\\
 
-	app.put(baseURL + '/og-basket-stats/:year/:country', (request, response) => {
+	app.put(baseURL + '/og-basket-stats/:year/:country',(request, response)=>{
 		var anyo = parseInt(request.params.year);
 		var auxyear = parseInt(request.body.year);
 		
 		var pais = request.params.country;
 		var aux = request.body;
 		
-		
 		if((anyo != auxyear) || (pais!=aux.country)){
 			response.send(409,"Conflict (WARNING)");
-		}	
-		else{
-			db.update({"country":pais,"year":anyo}, aux,(err, newbasketstats)=>{
+		}else{
+			db.update({"country":pais,"year":anyo}, aux, (err,newbasketstats)=>{
 				if(newbasketstats==0){
 					response.status(404).send("Not Found");
 				}else{
@@ -156,5 +156,21 @@ module.exports = function(app){
 		
 	});
 
-//==============================DELETE-RecursoEspecifico==============================\\	
+//==============================DELETE-RecursoEspecifico==============================\\
+
+	app.delete(baseURL + '/og-basket-stats/:year/:country', (request, response) => {
+		var anyo = parseInt(request.params.year);
+		var pais = request.params.country;
+	
+		db.remove({"country": pais,"year":anyo},{multi:true},(err, rembasketstats)=> {
+			if(rembasketstats == 0){
+				response.status(404).send("Not found");
+			}else{
+				response.sendStatus(200);
+			}
+		});
+	});
+
+//==============================FIN==============================\\
+
 };
