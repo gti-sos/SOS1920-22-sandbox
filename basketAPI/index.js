@@ -29,7 +29,7 @@ module.exports = function(app){
 		response.sendStatus(200);
 	});
 	
-//==============================POST-General==============================\\
+//==============================GET-General==============================\\
 
 	app.get(baseURL + '/og-basket-stats', (request, response) => {
 		var query = request.query; //Es un String
@@ -148,7 +148,7 @@ module.exports = function(app){
 				if(newbasketstats==0){
 					response.status(404).send("Not Found");
 				}else{
-					response.status(200);
+					response.status(200).send("OK");
 				}
 			});
 		}
